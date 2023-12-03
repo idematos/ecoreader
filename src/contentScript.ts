@@ -11,18 +11,7 @@
 // For more information on Content Scripts,
 // See https://developer.chrome.com/extensions/content_scripts
 
-
-
-
-
-
-
-
-
-
-
 // Log `title` of current active web page
-
 const pageTitle: string =
   document.head.getElementsByTagName('title')[0].innerHTML;
 console.log(
