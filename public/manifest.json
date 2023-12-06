@@ -5,9 +5,11 @@
   "description": "Reduces energy usage during webpage loading.",
   "homepage_url": "https://github.com/isabeladematos/ecoloader",
   "icons": {
-    "32": "icons/leaf-32.png",
-    "64": "icons/leaf-64.png",
-    "128": "icons/leaf-128.png"
+    "32": "icons/icon-32.png",
+    "64": "icons/icon-64.png",
+    "128": "icons/icon-128.png",
+    "256": "icons/icon-256.png",
+    "512": "icons/icon-512.png"
   },
   "background": {
     "service_worker": "background.js"
