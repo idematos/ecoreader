@@ -11,13 +11,7 @@
     "256": "icons/icon-256.png",
     "512": "icons/icon-512.png"
   },
-  "background": {
-    "scripts": [
-      "background.js"
-    ],
-    "service_worker": "background.js",
-    "type": "module"
-  },
+  "background": {},
   "action": {
     "default_title": "Ecoloader",
     "default_popup": "popup.html"

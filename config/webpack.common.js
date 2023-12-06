@@ -71,11 +71,18 @@ const common = {
             const targetBrowser = process.env.TARGET_BROWSER || 'firefox';
             const manifest = JSON.parse(content.toString());
             if (targetBrowser === 'firefox') {
-              delete manifest.background.service_worker;
-              delete manifest.background.type;
+              manifest.background.scripts = ['background.js']
+              manifest.browser_specific_settings = {
+                gecko: {
+                  id: '{e62ee532-0390-4390-8073-a32b187f7e96}',
+                  strict_min_version: '100.0',
+                },
+              };
             } else {
-              delete manifest.background.scripts;
+              manifest.background.service_worker = 'background.js';
+              manifest.background.type = 'module';
             }
+
             return JSON.stringify(manifest, null, 2);
           },
         },
