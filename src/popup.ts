@@ -5,26 +5,21 @@ import './popup.css';
 (function () {
   // We will make use of Storage API to get and store `count` value
   // More information on Storage API can we found at
-  // https://developer.chrome.com/extensions/storage
+  // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/storage
 
   // To get storage access, we have to mention it in `permissions` property of manifest.json file
   // More information on Permissions can we found at
-  // https://developer.chrome.com/extensions/declare_permissions
+  // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/permissions
   const counterStorage = {
     get: (cb: (count: number) => void) => {
-      chrome.storage.sync.get(['count'], (result) => {
+      browser.storage.sync.get(['count']).then((result) => {
         cb(result.count);
       });
     },
     set: (value: number, cb: () => void) => {
-      chrome.storage.sync.set(
-        {
+      browser.storage.sync.set({
           count: value,
-        },
-        () => {
-          cb();
-        }
-      );
+      }).then(cb);
     },
   };
 
@@ -61,21 +56,20 @@ import './popup.css';
 
         // Communicate with content script of
         // active tab by sending a message
-        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
           const tab = tabs[0];
 
-          chrome.tabs.sendMessage(
+          browser.tabs.sendMessage(
             tab.id!,
             {
               type: 'COUNT',
               payload: {
                 count: newCount,
               },
-            },
-            (response) => {
+            }).then((response) => {
               console.log('Current count value passed to contentScript file');
             }
-          );
+          ).catch(console.error);;
         });
       });
     });
@@ -98,14 +92,13 @@ import './popup.css';
   document.addEventListener('DOMContentLoaded', restoreCounter);
 
   // Communicate with background file by sending a message
-  chrome.runtime.sendMessage(
+  browser.runtime.sendMessage(
     {
       type: 'GREETINGS',
       payload: {
         message: 'Hello, my name is Pop. I am from Popup.',
       },
-    },
-    (response) => {
+    }).then((response) => {
       console.log(response.message);
     }
   );

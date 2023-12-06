@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const PATHS = require('./paths');
 
-// used in the module rules and in the stats exlude list
+// Used in the module rules and in the stats exclude list
 const IMAGE_TYPES = /\.(png|jpe?g|gif|svg)$/i;
 
 // To re-use webpack configuration across templates,
@@ -58,16 +58,43 @@ const common = {
     extensions: ['.ts', '.js'],
   },
   plugins: [
-    // Copy static assets from `public` folder to `build` folder
     new CopyWebpackPlugin({
       patterns: [
+        {
+          from: 'node_modules/webextension-polyfill/dist/browser-polyfill.min.js',
+        },
+        {
+          from: '**/manifest.json',
+          context: 'public',
+          transform: (content) => {
+            const targetBrowser = process.env.TARGET_BROWSER || 'firefox';
+            console.log("I am here again while compiling for", targetBrowser)
+            const manifest = JSON.parse(content.toString());
+            if (targetBrowser === 'firefox') {
+              delete manifest.background.service_worker;
+            } else {
+              delete manifest.background.scripts;
+            }
+            return JSON.stringify(manifest, null, 2);
+          },
+        },
+        {
+          from: '**/*.html',
+          context: 'public',
+          transform: (content) => {
+            const polyfill =
+              '<script src="browser-polyfill.min.js"></script>';
+            return content
+              .toString()
+              .replace('<%= browser-polyfill %>', polyfill);
+          },
+        },
         {
           from: '**/*',
           context: 'public',
         },
       ],
     }),
-    // Extract CSS into separate files
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),

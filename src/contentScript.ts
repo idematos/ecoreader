@@ -9,36 +9,36 @@
 // under `content_scripts` property
 
 // For more information on Content Scripts,
-// See https://developer.chrome.com/extensions/content_scripts
+// See https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Anatomy_of_a_WebExtension#Content_scripts
 
 // Log `title` of current active web page
 const pageTitle: string =
   document.head.getElementsByTagName('title')[0].innerHTML;
 console.log(
-  `Page title is: '${pageTitle}' - evaluated by Chrome extension's 'contentScript.js' file`
+  `Page title is: '${pageTitle}' - evaluated by the extension's 'contentScript.js' file`
 );
 
 // Communicate with background file by sending a message
-chrome.runtime.sendMessage(
+browser.runtime.sendMessage(
   {
     type: 'GREETINGS',
     payload: {
       message: 'Hello, my name is Con. I am from ContentScript.',
     },
-  },
-  (response) => {
-    console.log(response.message);
   }
-);
+).then((response) => {
+  console.log(response.message);
+});
 
 // Listen for message
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+browser.runtime.onMessage.addListener((request, sender) => {
+  console.log({ request, sender })
+
   if (request.type === 'COUNT') {
     console.log(`Current count is ${request.payload.count}`);
   }
 
   // Send an empty response
-  // See https://github.com/mozilla/webextension-polyfill/issues/130#issuecomment-531531890
-  sendResponse({});
-  return true;
+  // See: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/onMessage
+  return Promise.resolve();
 });
