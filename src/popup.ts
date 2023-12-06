@@ -69,7 +69,7 @@ import './popup.css';
             }).then((response) => {
               console.log('Current count value passed to contentScript file');
             }
-          ).catch(console.error);;
+          ).catch(console.error);
         });
       });
     });

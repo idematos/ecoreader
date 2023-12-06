@@ -1,5 +1,6 @@
 'use strict';
 
+const { ProvidePlugin } = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -58,11 +59,11 @@ const common = {
     extensions: ['.ts', '.js'],
   },
   plugins: [
+    new ProvidePlugin({
+      browser: "webextension-polyfill"
+    }),
     new CopyWebpackPlugin({
       patterns: [
-        {
-          from: 'node_modules/webextension-polyfill/dist/browser-polyfill.min.js',
-        },
         {
           from: '**/manifest.json',
           context: 'public',
@@ -71,21 +72,11 @@ const common = {
             const manifest = JSON.parse(content.toString());
             if (targetBrowser === 'firefox') {
               delete manifest.background.service_worker;
+              delete manifest.background.type;
             } else {
               delete manifest.background.scripts;
             }
             return JSON.stringify(manifest, null, 2);
-          },
-        },
-        {
-          from: '**/*.html',
-          context: 'public',
-          transform: (content) => {
-            const polyfill =
-              '<script src="browser-polyfill.min.js"></script>';
-            return content
-              .toString()
-              .replace('<%= browser-polyfill %>', polyfill);
           },
         },
         {
