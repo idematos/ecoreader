@@ -68,7 +68,6 @@ const common = {
           context: 'public',
           transform: (content) => {
             const targetBrowser = process.env.TARGET_BROWSER || 'firefox';
-            console.log("I am here again while compiling for", targetBrowser)
             const manifest = JSON.parse(content.toString());
             if (targetBrowser === 'firefox') {
               delete manifest.background.service_worker;
