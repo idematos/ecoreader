@@ -1,5 +1,3 @@
-'use strict'
-
 // Content script file will run in the context of web page.
 // With content script you can manipulate the web pages using
 // Document Object Model (DOM).
@@ -14,6 +12,7 @@
 // Log `title` of current active web page
 const pageTitle: string =
   document.head.getElementsByTagName('title')[0].innerHTML
+
 console.log(
   `Page title is: '${pageTitle}' - evaluated by the extension's 'contentScript.js' file`
 )
