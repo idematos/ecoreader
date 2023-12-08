@@ -2,7 +2,7 @@
 
 const { merge } = require('webpack-merge')
 
-const common = require('./webpack.common.js')
+const common = require('./webpack.common.cjs')
 const PATHS = require('./paths')
 
 // Merge webpack configuration files
