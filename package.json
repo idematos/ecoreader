@@ -9,9 +9,10 @@
     "build": "webpack --mode=production --config config/webpack.config.cjs",
     "pack": "npm run build && node pack.cjs",
     "lint": "eslint .",
-    "lint-fix": "eslint --fix .",
+    "lint:fix": "eslint --fix .",
     "format": "prettier --check --ignore-unknown '{config,public,src}/**/*.{html,css,ts,js,cjs,json}' './*.{js,cjs,json}'",
-    "format-fix": "prettier --write --ignore-unknown '{config,public,src}/**/*.{html,css,ts,js,cjs,json}' './*.{js,cjs,json}'"
+    "format:fix": "prettier --write --ignore-unknown '{config,public,src}/**/*.{html,css,ts,js,cjs,json}' './*.{js,cjs,json}'",
+    "fix": "npm run lint:fix && npm run format:fix"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.254",
