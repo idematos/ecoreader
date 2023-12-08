@@ -10,10 +10,10 @@
 
 html {
   --black-wash: #0c0c0c;
-  --eerie-black: #1C1C1C;
-  --cold-gray: #9E9E9E;
-  --willpower-orange: #F95B04;
-  --white: #FFF;
+  --eerie-black: #1c1c1c;
+  --cold-gray: #9e9e9e;
+  --willpower-orange: #f95b04;
+  --white: #fff;
   --font: 'Helvetica', sans-serif;
 
   font-family: var(--font);

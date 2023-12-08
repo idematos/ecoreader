@@ -1,5 +1,3 @@
-'use strict';
-
 // Content script file will run in the context of web page.
 // With content script you can manipulate the web pages using
 // Document Object Model (DOM).
@@ -13,32 +11,33 @@
 
 // Log `title` of current active web page
 const pageTitle: string =
-  document.head.getElementsByTagName('title')[0].innerHTML;
+  document.head.getElementsByTagName('title')[0].innerHTML
+
 console.log(
   `Page title is: '${pageTitle}' - evaluated by the extension's 'contentScript.js' file`
-);
+)
 
 // Communicate with background file by sending a message
-browser.runtime.sendMessage(
-  {
+browser.runtime
+  .sendMessage({
     type: 'GREETINGS',
     payload: {
       message: 'Hello, my name is Con. I am from ContentScript.',
     },
-  }
-).then((response) => {
-  console.log(response.message);
-});
+  })
+  .then((response) => {
+    console.log(response.message)
+  })
 
 // Listen for message
 browser.runtime.onMessage.addListener((request, sender) => {
   console.log({ request, sender })
 
   if (request.type === 'COUNT') {
-    console.log(`Current count is ${request.payload.count}`);
+    console.log(`Current count is ${request.payload.count}`)
   }
 
   // Send an empty response
   // See: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/onMessage
-  return Promise.resolve();
-});
+  return Promise.resolve()
+})

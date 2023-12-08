@@ -23,3 +23,22 @@ This will compile a different `manifest.json`. The default is Firefox, but to us
 $ TARGET_BROWSER=chrome npm run watch
 ```
 The same applies to the build command above.
+
+## Linting and formatting
+We use ESLint and Prettier to lint and format our code.
+To automatically reformat files and fix some of the issues, run:
+```bash
+$ npm run fix
+```
+
+### Lint
+```bash
+$ npm run lint
+$ npm run lint:fix
+```
+
+### Format
+```bash
+$ npm run format
+$ npm run format:fix
+```
