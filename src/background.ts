@@ -1,18 +1,18 @@
-'use strict';
-
 browser.webRequest.onCompleted.addListener(
-    function(details) {
+  (details) => {
+    const contentLengthHeader = details.responseHeaders?.find(
+      (header) => header.name.toLowerCase() === 'content-length'
+    )
 
-      const contentLengthHeader = details.responseHeaders?.find(header => header.name.toLowerCase() === 'content-length');
+    const responseSize = contentLengthHeader?.value
+      ? parseInt(contentLengthHeader.value, 10)
+      : 0
+    browser.storage.local.get({ totalSize: 0 }).then((result) => {
+      const newTotalSize = parseInt(result.totalSize, 10) + responseSize
 
-      const responseSize =  contentLengthHeader?.value ? parseInt(contentLengthHeader.value, 10) : 0;
-        browser.storage.local.get({ totalSize: 0 }).then(function(result) {
-
-          const newTotalSize = parseInt(result.totalSize,10) + responseSize;
-
-          browser.storage.local.set({ totalSize: newTotalSize });
-        });
-    },
-    { urls: ["<all_urls>"] },
-    ["responseHeaders"]
-);
+      browser.storage.local.set({ totalSize: newTotalSize })
+    })
+  },
+  { urls: ['<all_urls>'] },
+  ['responseHeaders']
+)
