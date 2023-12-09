@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
       browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
         const activeTab = tabs[0]
         if (activeTab.id) {
-          browser.tabs.reload(activeTab?.id)
+          browser.tabs.reload(activeTab.id)
         }
       })
     })
