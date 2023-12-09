@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (reloadIcon) {
     reloadIcon.addEventListener('click', () => {
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
         const activeTab = tabs[0]
         if (activeTab.id) {
-          chrome.tabs.reload(activeTab?.id)
+          browser.tabs.reload(activeTab?.id)
         }
       })
     })
