@@ -29,9 +29,7 @@ const formatBytes = (bytes: number, decimals = 2): string => {
 
 browser.storage.local.get({ totalSize: 0 }).then((result) => {
   const { totalSize } = result
-  document.getElementById('totalSize')!.innerText = `${formatBytes(
-    totalSize
-  )} KB`
+  document.getElementById('totalSize')!.innerText = formatBytes(totalSize)
 })
 
 document.addEventListener('DOMContentLoaded', () => {
