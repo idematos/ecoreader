@@ -27,6 +27,7 @@ body {
 
 a {
   cursor: pointer;
+  height: 25px;
 }
 
 .app {
@@ -35,7 +36,6 @@ a {
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  text-align: left;
   padding: 20px;
 }
 
@@ -45,4 +45,92 @@ a {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+
+.app-header-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.switch-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.switch-label {
+  padding: 8px;
+  transition: color 0.4s ease;
+  font-size: 8px;
+  font-weight: bolder;
+}
+
+.switch-label-on {
+  color: var(--green);
+}
+
+.switch-label-off {
+  color: var(--cold-gray);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  border-radius: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--black-wash);
+  border: 1px solid white;
+  opacity: 50%;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 20px;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 16px;
+  width: 16px;
+  right: 20px;
+  top: 1px;
+  background-color: var(--green);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--black-wash);
+  opacity: 100%;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(18px);
+  -ms-transform: translateX(18px);
+  transform: translateX(18px);
+}
+
+input:checked + .switch-label-on {
+  color: var(--green);
+}
+
+input:checked + .switch-label-off {
+  color: var(--cold-gray);
 }
