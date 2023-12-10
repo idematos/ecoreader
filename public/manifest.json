@@ -16,7 +16,7 @@
     "default_title": "Ecoloader",
     "default_popup": "popup.html"
   },
-  "permissions": ["storage", "activeTab", "scripting", "webRequest"],
+  "permissions": ["storage", "scripting", "webRequest"],
   "host_permissions": ["<all_urls>"],
   "content_scripts": [
     {
