@@ -1,6 +1,9 @@
 import './popup.css'
 
-const truncateString = (inputString: string | null, length?: number = 30): string => {
+const truncateString = (
+  inputString: string | null,
+  length: number = 30
+): string => {
   if (!inputString) {
     return ''
   }
