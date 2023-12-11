@@ -8,22 +8,21 @@
   <body>
     <div class="app">
       <div class="app-header">
-        <p id="currentDomain"></p>
+        <div class="app-header-left">
+          <p id="currentDomain"></p>
+          <a id="whitelistLink">+ ADD TO WHITELIST</a>
+        </div>
         <div class="app-header-right">
           <a id="reloadIcon" hidden>
             <img src="/icons/reload-icon.svg" alt="Reload page" width="25" />
           </a>
           <div class="switch-container">
-            <label class="switch-label switch-label-off" id="switch-label-off"
-              >OFF</label
-            >
+            <label class="switch-label" id="switch-label-off">OFF</label>
             <label class="switch" id="switch">
               <input type="checkbox" id="statusCheckbox" checked />
               <span class="slider"></span>
             </label>
-            <label class="switch-label switch-label-on" id="switch-label-on"
-              >ON</label
-            >
+            <label class="switch-label" id="switch-label-on">ON</label>
           </div>
         </div>
       </div>
