@@ -1,13 +1,15 @@
 import './popup.css'
 
-const truncateString = (inputString: string | null): string | null => {
-  if (inputString) {
-    if (inputString.length <= 30) {
-      return inputString
-    }
-    return `${inputString.slice(0, 30)}...`
+const truncateString = (inputString: string | null, length?: number = 30): string => {
+  if (!inputString) {
+    return ''
   }
-  return null
+
+  if (inputString.length <= length) {
+    return inputString
+  }
+
+  return `${inputString.slice(0, length - 3)}...`
 }
 
 document.addEventListener('DOMContentLoaded', () => {
