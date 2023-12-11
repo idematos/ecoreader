@@ -1,8 +1,22 @@
 import './popup.css'
 
+const truncateString = (
+  inputString: string | null,
+  length: number = 30
+): string => {
+  if (!inputString) {
+    return ''
+  }
+
+  if (inputString.length <= length) {
+    return inputString
+  }
+
+  return `${inputString.slice(0, length - 3)}...`
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const reloadIcon = document.getElementById('reloadIcon')
-
   if (reloadIcon) {
     reloadIcon.addEventListener('click', () => {
       browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
@@ -18,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const statusCheckbox = document.getElementById(
     'statusCheckbox'
   ) as HTMLInputElement
-
   if (statusCheckbox) {
     browser.storage.sync.get(['status']).then((result) => {
       statusCheckbox.checked = result.status || true
@@ -33,20 +46,39 @@ document.addEventListener('DOMContentLoaded', () => {
       if (reloadIcon?.hidden) reloadIcon.hidden = false
     })
   }
-})
 
-const extractDomain = (url: string): string | null => {
-  const match = url.match(/^(?:https?:\/\/)?(?:www\.)?([^/?]+)/)
-  return match ? match[1] : null
-}
+  browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
+    const activeTab = tabs[0]
 
-browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
-  const activeTab = tabs[0]
-  if (activeTab.url) {
-    const domain = extractDomain(activeTab.url)
-    const urlElement = document.getElementById('currentDomain')
-    if (urlElement) {
-      urlElement.textContent = domain || ''
+    if (activeTab.url) {
+      const domain = new URL(activeTab.url).hostname
+      const urlElement = document.getElementById('currentDomain')
+      if (urlElement) {
+        urlElement.textContent = truncateString(domain)
+      }
+
+      const whitelistLink = document.getElementById('whitelistLink')
+      if (whitelistLink) {
+        browser.storage.sync.get('whitelist').then((result) => {
+          let whitelist = result.whitelist || []
+
+          if (whitelist.includes(domain)) {
+            whitelistLink.textContent = 'REMOVE FROM WHITELIST'
+          }
+
+          whitelistLink.addEventListener('click', () => {
+            if (whitelist.includes(domain)) {
+              whitelist = whitelist.filter((item: string) => item !== domain)
+              whitelistLink.textContent = '+ ADD TO WHITELIST'
+            } else {
+              whitelist.push(domain)
+              whitelistLink.textContent = 'REMOVE FROM WHITELIST'
+            }
+
+            browser.storage.sync.set({ whitelist })
+          })
+        })
+      }
     }
-  }
+  })
 })
