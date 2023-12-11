@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const domain = new URL(activeTab.url).hostname
       const urlElement = document.getElementById('currentDomain')
       if (urlElement) {
-        urlElement.textContent = truncateString(domain) || ''
+        urlElement.textContent = truncateString(domain)
       }
 
       const whitelistLink = document.getElementById('whitelistLink')
