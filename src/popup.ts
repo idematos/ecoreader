@@ -1,4 +1,4 @@
-import "./popup.css";
+import './popup.css'
 
 const truncateString = (
   inputString: string | null,
