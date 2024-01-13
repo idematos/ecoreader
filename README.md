@@ -1,5 +1,5 @@
-# ecoloader
-Ecoloader is a browser extension designed to reduce energy consumption during web navigation.
+# ecomode
+Ecomode is a browser extension designed to reduce energy consumption during web navigation.
 
 ## Setup
 Install required packages:
