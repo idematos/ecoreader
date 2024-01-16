@@ -1,5 +1,5 @@
 # ecoreader
-A browser extension designed to reduce energy consumption during web navigation.
+A browser extension to reduce energy consumption during web navigation.
 
 ## Setup
 Install required packages:
