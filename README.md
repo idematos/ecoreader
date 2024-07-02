@@ -1,4 +1,4 @@
-# ecoreader
+# Ecoreader
 A browser extension to reduce energy consumption during web navigation.
 
 ## Setup
