@@ -31,14 +31,18 @@ To automatically reformat files and fix some of the issues, run:
 $ npm run fix
 ```
 
-### Lint
+#### Lint
 ```bash
 $ npm run lint
 $ npm run lint:fix
 ```
 
-### Format
+#### Format
 ```bash
 $ npm run format
 $ npm run format:fix
 ```
+
+## License
+
+Licensed under the [MIT License](https://opensource.org/license/MIT).
