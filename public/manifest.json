@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Ecoloader",
+  "name": "Ecoreader",
   "version": "0.1.0",
   "description": "Reduces energy usage during webpage loading.",
   "homepage_url": "https://github.com/isabeladematos/ecoloader",
