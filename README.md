@@ -25,6 +25,21 @@ $ TARGET_BROWSER=chrome npm run watch
 ```
 The same applies to the build command above.
 
+## Load in Developer Mode
+
+#### Chrome
+
+1. Open Chrome and go to `chrome://extensions/`.
+2. Enable Developer mode (toggle in the top right).
+3. Click on Load unpacked.
+4. Select the output directory (`build/`).
+
+#### Firefox
+
+1. Open Firefox and go to `about:debugging#/runtime/this-firefox`.
+2. Click on Load Temporary Add-on...
+3. Select the manifest file (`public/manifest.json`) from the output directory.
+
 ## Linting and formatting
 We use [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) to lint and format our code.
 To automatically reformat files and fix some of the issues, run:
