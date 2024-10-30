@@ -2,17 +2,18 @@
 A browser extension to reduce energy consumption during web navigation.
 
 ## Setup
-Install required packages:
+
+#### Install required packages
 ```bash
 $ npm install
 ```
 
-Develop in watch mode:
+#### Develop in watch mode
 ```bash
 $ npm run watch
 ```
 
-Build for production:
+#### Build for production
 ```bash
 $ npm run build
 ```
@@ -25,7 +26,7 @@ $ TARGET_BROWSER=chrome npm run watch
 The same applies to the build command above.
 
 ## Linting and formatting
-We use ESLint and Prettier to lint and format our code.
+We use [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) to lint and format our code.
 To automatically reformat files and fix some of the issues, run:
 ```bash
 $ npm run fix
