@@ -71,6 +71,13 @@ a {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 0.5em;
+}
+
+.app-header-right img, #on-off-icon {
+  width: 25px;
+  height: 25px;
+  fill: var(--green);
 }
 
 .switch-container {
@@ -79,27 +86,10 @@ a {
   align-items: center;
 }
 
-.switch-label {
-  padding: 8px;
-  transition: color 0.3s ease;
-  font-size: 8px;
-  font-weight: bolder;
-}
-
-#switch-label-on {
-  color: var(--green);
-}
-
-#switch-label-off {
-  color: var(--cold-gray);
-}
-
 .switch {
   position: relative;
   display: inline-block;
-  width: 40px;
-  height: 20px;
-  border-radius: 20px;
+  cursor: pointer;
 }
 
 .switch input {
@@ -108,49 +98,6 @@ a {
   height: 0;
 }
 
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--black-wash);
-  border: 1px solid white;
-  opacity: 50%;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-  border-radius: 20px;
-}
-
-.slider:before {
-  position: absolute;
-  content: '';
-  height: 16px;
-  width: 16px;
-  right: 21px;
-  top: 1px;
-  background-color: var(--green);
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: var(--black-wash);
-  opacity: 100%;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(20px);
-  -ms-transform: translateX(20px);
-  transform: translateX(20px);
-}
-
-input:checked + .switch-label-on {
+input:checked + img {
   color: var(--green);
-}
-
-input:checked + .switch-label-off {
-  color: var(--cold-gray);
 }
