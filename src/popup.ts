@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     statusCheckbox.addEventListener('click', () => {
       browser.storage.sync.set({ status: !statusCheckbox.checked })
 
-      document.getElementById('switch-label-on')!.style.color =
+      document.getElementById('on-off-icon')!.style.fill =
         statusCheckbox.checked ? 'var(--green)' : 'var(--cold-gray)'
 
       if (reloadIcon?.hidden) reloadIcon.hidden = false
