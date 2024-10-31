@@ -72,12 +72,12 @@ const common = {
             const manifest = JSON.parse(content.toString())
             if (targetBrowser === 'firefox') {
               manifest.background.scripts = ['background.js']
-              manifest.browser_specific_settings = {
-                gecko: {
-                  id: '{e62ee532-0390-4390-8073-a32b187f7e96}',
-                  strict_min_version: '100.0',
-                },
-              }
+              // manifest.browser_specific_settings = {
+              //   gecko: {
+              //     id: '{e62ee532-0390-4390-8073-a32b187f7e96}',
+              //     strict_min_version: '100.0',
+              //   },
+              // }
             } else {
               manifest.background.service_worker = 'background.js'
               manifest.background.type = 'module'
