@@ -74,7 +74,8 @@ a {
   gap: 0.5em;
 }
 
-.app-header-right img, #on-off-icon {
+.app-header-right img,
+#on-off-icon {
   width: 25px;
   height: 25px;
   fill: var(--green);
