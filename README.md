@@ -43,7 +43,3 @@ $ npm run lint:fix
 $ npm run format
 $ npm run format:fix
 ```
-
-## License
-
-Licensed under the [MIT License](https://opensource.org/license/MIT).
