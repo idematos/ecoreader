@@ -1,4 +1,6 @@
-# [WIP] Ecoreader
+# Ecoreader
+*[work in progress]*
+
 A browser extension to reduce energy consumption during web navigation.
 
 ## Setup
@@ -43,3 +45,7 @@ $ npm run lint:fix
 $ npm run format
 $ npm run format:fix
 ```
+
+## Contributions
+
+Contributions are welcome. Feel free to open an issue or submit a pull request if you have questions or suggestions.
